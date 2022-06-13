@@ -26,4 +26,4 @@ jobs:
       - if: ${{ github.event_name == 'workflow_dispatch' }}
         run: >
             git config --global --add safe.directory $(realpath .) &&
-            make gitlint GITLINT_BASE=HEAD && echo 1
+            make gitlint GITLINT_BASE=HEAD~1 && echo 1
