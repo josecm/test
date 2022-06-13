@@ -2,7 +2,7 @@ name: Bao component base workflow
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
   workflow_dispatch:
 
@@ -15,6 +15,15 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-      - run: >
-          git config --global --add safe.directory $(realpath .) &&
-          make gitlint GITLINT_BASE=${{ github.event.pull_request.base.sha }}
+      - if: ${{ github.event_name == 'pull_request' }}
+        run: >
+            git config --global --add safe.directory $(realpath .) &&
+            make gitlint GITLINT_BASE=${{ github.event.pull_request.base.sha }} && echo 3
+      - if: ${{ github.event_name == 'push' }}
+        run: >
+            git config --global --add safe.directory $(realpath .) &&
+            make gitlint GITLINT_BASE=${{ github.event.before }} && echo 2
+      - if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: >
+            git config --global --add safe.directory $(realpath .) &&
+            make gitlint GITLINT_BASE=${{ github.event.workflow_dispatch.base.sha }} && echo 1
