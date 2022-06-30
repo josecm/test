@@ -1,4 +1,4 @@
-name: Bao component base workflow call
+name: Bao component base workflow template
 
 on:
   push:
