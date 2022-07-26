@@ -1,0 +1,22 @@
+name: Dependent PRs
+
+permissions:
+  pull-requests: write
+  actions: write
+
+on:
+  pull_request_target:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: z0al/dependent-issues@v1.5.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          label: dependent
+          comment: >
+            This PR depends on:
+
+            {{ dependencies }}
