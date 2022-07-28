@@ -1,8 +1,7 @@
 name: Dependent PRs
 
 permissions:
-  pull-requests: write
-  actions: write
+  pull-requests: write | read
 
 on:
   pull_request_target:
