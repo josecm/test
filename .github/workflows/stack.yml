@@ -1,10 +1,5 @@
 name: Dependent PRs
 
-permissions:
-  issues: write
-  pull-requests: write
-  statuses: write
-
 on:
   pull_request_target:
 
