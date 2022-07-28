@@ -1,7 +1,13 @@
 name: Dependent PRs
 
 permissions:
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  id-token: write
   pull-requests: write
+  statuses: write
 
 on:
   pull_request_target:
